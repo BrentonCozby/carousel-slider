@@ -1,24 +1,24 @@
 {
-    "name": "carousel-slider",
-    "version": "1.0.0",
-    "main": "carousel.js",
-    "author": "Brenton Cozby <brenton.cozby@gmail.com>",
-    "license": "MIT",
-    "repository": "https://github.com/BrentonCozby/carousel-slider.git",
-    "scripts": {
-        "sass": "node-sass src/css -o src/css",
-        "sass:watch": "node-sass -w src/css -o src/css",
-        "autoprefixer": "postcss src/css/**/*.css --use autoprefixer -r",
-        "cleancss": "cleancss -o dist/carousel.min.css src/css/**/*.css",
-        "build-css-min": "npm run sass && npm run autoprefixer && npm run cleancss",
-        "babel": "babel src/js --out-file dist/carousel.js"
-    },
-    "devDependencies": {
-        "autoprefixer": "^7.1.1",
-        "babel-cli": "^6.24.1",
-        "babel-preset-env": "^1.5.1",
-        "clean-css-cli": "^4.1.3",
-        "node-sass": "^4.5.3",
-        "postcss-cli": "^4.0.0"
-    }
+  "name": "carousel-slider",
+  "version": "1.0.1",
+  "main": "carousel.js",
+  "author": "Brenton Cozby <brenton.cozby@gmail.com>",
+  "license": "MIT",
+  "repository": "https://github.com/BrentonCozby/carousel-slider.git",
+  "scripts": {
+    "sass": "node-sass src/css -o src/css",
+    "sass:watch": "node-sass -w src/css -o src/css",
+    "autoprefixer": "postcss src/css/**/*.css --use autoprefixer -r",
+    "cleancss": "cleancss -o dist/carousel.min.css src/css/**/*.css",
+    "build-css-min": "npm run sass && npm run autoprefixer && npm run cleancss",
+    "babel": "babel src/js --out-file dist/carousel.js"
+  },
+  "devDependencies": {
+    "autoprefixer": "^7.1.1",
+    "babel-cli": "^6.24.1",
+    "babel-preset-env": "^1.5.1",
+    "clean-css-cli": "^4.1.3",
+    "node-sass": "^4.5.3",
+    "postcss-cli": "^4.0.0"
+  }
 }
