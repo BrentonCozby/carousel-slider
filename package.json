@@ -1,0 +1,8 @@
+{
+  "name": "carousel-slider",
+  "version": "1.0.0",
+  "main": "carousel.js",
+  "author": "Brenton Cozby <brenton.cozby@gmail.com>",
+  "license": "MIT",
+  "repository": "https://github.com/BrentonCozby/carousel-slider.git"
+}
