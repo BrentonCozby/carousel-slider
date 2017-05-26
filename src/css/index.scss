@@ -1,15 +1,14 @@
 .carousel {
     width: 100%;
-    overflow: hidden;
     position: relative;
+    padding-bottom: 40%;
 
-    @media all and (min-width: 786px) {
-        padding-bottom: 40%;
+    &.stacked {
+        padding-bottom: 0;
     }
 
     .left-btn,
     .right-btn {
-        display: none;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -22,13 +21,13 @@
         z-index: 2;
         background-color: rgba(0, 0, 0, .1);
 
-        @media all and (min-width: 786px) {
-            display: block;
-        }
-
         &:hover,
         &:focus {
             background-color: rgba(0, 0, 0, .7);
+        }
+
+        &.stacked {
+            display: none;
         }
     }
 
@@ -57,6 +56,10 @@
             display: block;
         }
 
+        &.stacked {
+            display: none;
+        }
+
         .dot {
             display: inline-block;
             border-radius: 100%;
@@ -80,17 +83,24 @@
     }
 }
 
-.carousel .carousel-item {
+.carousel-item {
     width: 100%;
     display: flex;
     flex-flow: row wrap;
     justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
 
-    @media all and (min-width: 768px) {
-        position: absolute;
-        top: 0;
-        left: 0;
-        height: 100%;
+    &.stacked {
+        position: relative;
+        top: auto;
+        left: auto;
+        height: auto;
+        margin: 15px 0;
     }
 
     &.appear-from-left {
