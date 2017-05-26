@@ -59,7 +59,7 @@ Copy following HTML and insert your content into each carousel-item.
 ```
 ```css
 #myCarousel {
-    padding-bottom: 45%: /* sets carousel height */
+    padding-bottom: 40%: /* sets carousel height */
 }
 ```
 
@@ -72,13 +72,8 @@ To stop a carousel from automatically sliding:
 ```javascript
 $('#myCarousel')[0].stopAutoSlide()
 ```
-To stack each slide on top of each other (good for phone screens):
-```javascript
-$('#myCarousel').stackSlides()
-```
-Responsively stack the slides if the screen is small:
+Stack each slide on top of each other (good for phone screens):
 ```javascript
 if($(window).width() < 768) {
     $('#myCarousel').stackSlides()
 }
-```
