@@ -3,14 +3,25 @@
     function stackSlides() {
         this.stacked = true
         const $thisCarousel = $(this)
-        const slideHeight = $($thisCarousel).css('padding-bottom')
-        const slideWidth = $($thisCarousel).css('width')
 
-        let paddingBottom =
-            +slideHeight.substring(0, slideHeight.length - 2) /
-            +slideWidth.substring(0, slideWidth.length - 2)
+        // set padding-bottom for each carousel-item that has a
+        // background-image
+        if($thisCarousel.children('.carousel-item').children().length > 0) {
+            const slideHeight = $($thisCarousel).css('padding-bottom')
+            const slideWidth = $($thisCarousel).css('width')
 
-        paddingBottom = paddingBottom * 100 + '%' || '0'
+            let paddingBottom =
+                +slideHeight.substring(0, slideHeight.length - 2) /
+                +slideWidth.substring(0, slideWidth.length - 2)
+
+            paddingBottom = paddingBottom * 100 + '%' || '0'
+
+            $thisCarousel.children('.carousel-item').each((index, item) => {
+                if($(item).css('background-image') !== 'none') {
+                    $(item).css('padding-bottom', paddingBottom)
+                }
+            })
+        }
 
         // replace carousel styles and functionality with stacked ones
         this.stopAutoSlide()
@@ -26,7 +37,6 @@
                 fade-in`
             )
         $thisCarousel.addClass('stacked')
-        $thisCarousel.children('.carousel-item').css('padding-bottom', paddingBottom)
     }
 
     function initCarousel(index, carousel) {
@@ -35,7 +45,6 @@
         this.stacked = false
         const $thisCarousel = $(this)
         const $carouselItems = $thisCarousel.find('.carousel-item')
-        const $dots = $thisCarousel.find('.dot')
         const quant = $carouselItems.length
         let waitTime = 5000
         let activeIndex = 0
@@ -50,18 +59,19 @@
         $carouselItems.addClass('fade-out')
         $carouselItems[0].classList.remove('fade-out')
 
-        // set active dot
-        $dots[0].classList.add('active')
-
-        // AutoSlider
-        let autoSlider = setInterval(() => slideCarousel(null, 'right'), waitTime)
-
-        function restartAutoSlide() {
-            if(autoSlider) clearTimeout(autoSlider)
-            autoSlider = setInterval(() => slideCarousel(null, 'right'), waitTime)
-        }
+        // create the dots
+        $('.dots').html(function() {
+            let dotElements = ``
+            $carouselItems.each((index) => {
+                const active = (index === 0) ? 'active' : ''
+                dotElements += `<span data-index="${index}" class="dot ${active}"></span>`
+            })
+            return dotElements
+        })
 
         function slideCarousel(e, direction) {
+            const $dots = $thisCarousel.find('.dot')
+
             // hide current carousel-item
             const opposite = (direction === 'left') ? 'right' : 'left'
             $carouselItems[activeIndex].classList.remove('appear-from-left', 'appear-from-right', 'fade-in')
@@ -91,8 +101,9 @@
         $thisCarousel.find('.left-btn').click(e => slideCarousel(e, 'left'))
         $thisCarousel.find('.right-btn').click(e => slideCarousel(e, 'right'))
 
-        function onDotClick(e) {
-            const nextIndex = this.dataset.index
+        function onDotClick(thisDot) {
+            const nextIndex = thisDot.dataset.index
+            const $dots = $thisCarousel.find('.dot')
 
             if(+nextIndex === +activeIndex) return;
 
@@ -113,7 +124,17 @@
             restartAutoSlide()
         }
 
-        $dots.click(onDotClick)
+        $thisCarousel.find('.dots').click(e => {
+            if(e.target.classList.contains('dot')) {
+                onDotClick(e.target)
+            }
+        })
+
+        let autoSlider = setInterval(() => slideCarousel(null, 'right'), waitTime)
+        function restartAutoSlide() {
+            if(autoSlider) clearTimeout(autoSlider)
+            autoSlider = setInterval(() => slideCarousel(null, 'right'), waitTime)
+        }
 
         // functions avaible to the user
         this.waitTime = function(time) {

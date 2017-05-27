@@ -1,6 +1,7 @@
 .carousel {
     width: 100%;
     position: relative;
+    padding-bottom: 40%;
 
     &.stacked {
         padding-bottom: 0;
@@ -8,6 +9,7 @@
 
     .left-btn,
     .right-btn {
+        display: none;
         position: absolute;
         top: 50%;
         transform: translateY(-50%);
@@ -19,6 +21,10 @@
         cursor: pointer;
         z-index: 2;
         background-color: rgba(0, 0, 0, .1);
+
+        @media all and (min-width: 786px) {
+            display: block;
+        }
 
         &:hover,
         &:focus {
@@ -43,17 +49,12 @@
     }
 
     .dots {
-        display: none;
         position: absolute;
         bottom: 0;
         padding-bottom: 10px;
         left: 50%;
         transform: translateX(-50%);
         z-index: 2;
-
-        @media all and (min-width: 786px) {
-            display: block;
-        }
 
         &.stacked {
             display: none;

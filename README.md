@@ -7,7 +7,6 @@
   * Option to break slides out of carousel-slider and stack them on top of each other (useful for small screens)
 
 ### Install options
-- ```bower install carousel-slider```
 - ```npm install --save carousel-slider```
 - CDN: place the ```link``` tag in the Head and the ```script``` tag at the bottom of the body:
   * ```<link rel="stylesheet" href="https://cdn.rawgit.com/BrentonCozby/carousel-slider/4052c74e/dist/carousel.min.css">```
@@ -27,13 +26,7 @@ Copy following HTML and insert your content into each carousel-item.
 <div class="carousel">
     <div id="left-btn" class="left-btn">‹</div>
     <div id="right-btn" class="right-btn">›</div>
-    <div class="dots">
-        <!-- EDIT: the number of dots must match the number of testimonials -->
-        <span data-index="0" class="dot"></span>
-        <span data-index="1" class="dot"></span>
-        <span data-index="2" class="dot"></span>
-        <span data-index="3" class="dot"></span>
-    </div>
+    <div class="dots"></div>
     <div class="carousel-item">
         <!-- Your content goes here -->
     </div>
@@ -75,5 +68,6 @@ $('#myCarousel')[0].stopAutoSlide()
 Stack each slide on top of each other (good for phone screens):
 ```javascript
 if($(window).width() < 768) {
-    $('#myCarousel').stackSlides()
+    $('#myCarousel')[0].stackSlides()
 }
+```
