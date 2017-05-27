@@ -5,19 +5,29 @@
     function stackSlides() {
         this.stacked = true;
         var $thisCarousel = $(this);
-        var slideHeight = $($thisCarousel).css('padding-bottom');
-        var slideWidth = $($thisCarousel).css('width');
 
-        var paddingBottom = +slideHeight.substring(0, slideHeight.length - 2) / +slideWidth.substring(0, slideWidth.length - 2);
+        // set padding-bottom for each carousel-item that has a
+        // background-image
+        if ($thisCarousel.children('.carousel-item').children().length > 0) {
+            var slideHeight = $($thisCarousel).css('padding-bottom');
+            var slideWidth = $($thisCarousel).css('width');
 
-        paddingBottom = paddingBottom * 100 + '%' || '0';
+            var paddingBottom = +slideHeight.substring(0, slideHeight.length - 2) / +slideWidth.substring(0, slideWidth.length - 2);
+
+            paddingBottom = paddingBottom * 100 + '%' || '0';
+
+            $thisCarousel.children('.carousel-item').each(function (index, item) {
+                if ($(item).css('background-image') !== 'none') {
+                    $(item).css('padding-bottom', paddingBottom);
+                }
+            });
+        }
 
         // replace carousel styles and functionality with stacked ones
         this.stopAutoSlide();
         $thisCarousel.find('.dot').removeClass('active');
         $thisCarousel.children().addClass('stacked').removeClass('appear-from-left\n                appear-from-right\n                hide-to-left\n                hide-to-right\n                fade-out\n                fade-in');
         $thisCarousel.addClass('stacked');
-        $thisCarousel.children('.carousel-item').css('padding-bottom', paddingBottom);
     }
 
     function initCarousel(index, carousel) {
@@ -26,7 +36,6 @@
         this.stacked = false;
         var $thisCarousel = $(this);
         var $carouselItems = $thisCarousel.find('.carousel-item');
-        var $dots = $thisCarousel.find('.dot');
         var quant = $carouselItems.length;
         var waitTime = 5000;
         var activeIndex = 0;
@@ -41,22 +50,19 @@
         $carouselItems.addClass('fade-out');
         $carouselItems[0].classList.remove('fade-out');
 
-        // set active dot
-        $dots[0].classList.add('active');
-
-        // AutoSlider
-        var autoSlider = setInterval(function () {
-            return slideCarousel(null, 'right');
-        }, waitTime);
-
-        function restartAutoSlide() {
-            if (autoSlider) clearTimeout(autoSlider);
-            autoSlider = setInterval(function () {
-                return slideCarousel(null, 'right');
-            }, waitTime);
-        }
+        // create the dots
+        $('.dots').html(function () {
+            var dotElements = '';
+            $carouselItems.each(function (index) {
+                var active = index === 0 ? 'active' : '';
+                dotElements += '<span data-index="' + index + '" class="dot ' + active + '"></span>';
+            });
+            return dotElements;
+        });
 
         function slideCarousel(e, direction) {
+            var $dots = $thisCarousel.find('.dot');
+
             // hide current carousel-item
             var opposite = direction === 'left' ? 'right' : 'left';
             $carouselItems[activeIndex].classList.remove('appear-from-left', 'appear-from-right', 'fade-in');
@@ -89,8 +95,9 @@
             return slideCarousel(e, 'right');
         });
 
-        function onDotClick(e) {
-            var nextIndex = this.dataset.index;
+        function onDotClick(thisDot) {
+            var nextIndex = thisDot.dataset.index;
+            var $dots = $thisCarousel.find('.dot');
 
             if (+nextIndex === +activeIndex) return;
 
@@ -111,7 +118,21 @@
             restartAutoSlide();
         }
 
-        $dots.click(onDotClick);
+        $thisCarousel.find('.dots').click(function (e) {
+            if (e.target.classList.contains('dot')) {
+                onDotClick(e.target);
+            }
+        });
+
+        var autoSlider = setInterval(function () {
+            return slideCarousel(null, 'right');
+        }, waitTime);
+        function restartAutoSlide() {
+            if (autoSlider) clearTimeout(autoSlider);
+            autoSlider = setInterval(function () {
+                return slideCarousel(null, 'right');
+            }, waitTime);
+        }
 
         // functions avaible to the user
         this.waitTime = function (time) {
