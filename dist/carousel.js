@@ -4,11 +4,11 @@
 
     function stackSlides() {
         this.stacked = true;
-        var $thisCarousel = $(this);
+        var $thisCarousel = $(this
 
         // set padding-bottom for each carousel-item that has a
         // background-image
-        if ($thisCarousel.children('.carousel-item').children().length > 0) {
+        );if ($thisCarousel.children('.carousel-item').children().length > 0) {
             var slideHeight = $($thisCarousel).css('padding-bottom');
             var slideWidth = $($thisCarousel).css('width');
 
@@ -44,14 +44,14 @@
         // remove stacked styles
         $thisCarousel.removeClass('stacked');
         $thisCarousel.children().removeClass('stacked');
-        $thisCarousel.children('.carousel-item').css('padding-bottom', '0');
+        $thisCarousel.children('.carousel-item').css('padding-bottom', '0'
 
         // hide all carousel items except the first one
-        $carouselItems.addClass('fade-out');
-        $carouselItems[0].classList.remove('fade-out');
+        );$carouselItems.addClass('fade-out');
+        $carouselItems[0].classList.remove('fade-out'
 
         // create the dots
-        $('.dots').html(function () {
+        );$('.dots').html(function () {
             var dotElements = '';
             $carouselItems.each(function (index) {
                 var active = index === 0 ? 'active' : '';
@@ -61,15 +61,15 @@
         });
 
         function slideCarousel(e, direction) {
-            var $dots = $thisCarousel.find('.dot');
+            var $dots = $thisCarousel.find('.dot'
 
             // hide current carousel-item
-            var opposite = direction === 'left' ? 'right' : 'left';
+            );var opposite = direction === 'left' ? 'right' : 'left';
             $carouselItems[activeIndex].classList.remove('appear-from-left', 'appear-from-right', 'fade-in');
-            $carouselItems[activeIndex].classList.add('hide-to-' + opposite);
+            $carouselItems[activeIndex].classList.add('hide-to-' + opposite
 
             // calculate the index of the next carousel-item to show
-            if (direction === 'left') {
+            );if (direction === 'left') {
                 nextIndex = (activeIndex - 1 + quant) % quant;
             } else {
                 nextIndex = (activeIndex + 1 + quant) % quant;
@@ -77,10 +77,10 @@
 
             // show next carousel-item
             $carouselItems[nextIndex].classList.remove('hide-to-left', 'hide-to-right', 'fade-out');
-            $carouselItems[nextIndex].classList.add('appear-from-' + direction);
+            $carouselItems[nextIndex].classList.add('appear-from-' + direction
 
             // update dots' UI
-            $dots.removeClass('active');
+            );$dots.removeClass('active');
             $dots[nextIndex].classList.add('active');
 
             activeIndex = nextIndex;
@@ -103,14 +103,14 @@
 
             // fade out active carousel-item
             $carouselItems[activeIndex].classList.remove('appear-from-left', 'appear-from-right', 'fade-in');
-            $carouselItems[activeIndex].classList.add('fade-out');
+            $carouselItems[activeIndex].classList.add('fade-out'
 
             // fade in next carousel-item
-            $carouselItems[nextIndex].classList.remove('hide-to-left', 'hide-to-right', 'fade-out');
-            $carouselItems[nextIndex].classList.add('fade-in');
+            );$carouselItems[nextIndex].classList.remove('hide-to-left', 'hide-to-right', 'fade-out');
+            $carouselItems[nextIndex].classList.add('fade-in'
 
             // update dots' UI
-            $dots.removeClass('active');
+            );$dots.removeClass('active');
             $dots[nextIndex].classList.add('active');
 
             activeIndex = +nextIndex;
