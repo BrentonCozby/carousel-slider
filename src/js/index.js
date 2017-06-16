@@ -150,6 +150,8 @@
         this.initCarousel = initCarousel
     }
 
-    $('.carousel').each(initCarousel)
+    if($('.carousel').length) {
+        $('.carousel').each(initCarousel)
+    }
 
 })()

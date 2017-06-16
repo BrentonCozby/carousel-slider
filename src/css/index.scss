@@ -2,9 +2,10 @@
     width: 100%;
     position: relative;
     padding-bottom: 40%;
+    overflow: hidden;
 
     &.stacked {
-        padding-bottom: 0;
+        padding-bottom: 0 !important;
     }
 
     .left-btn,
