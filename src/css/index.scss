@@ -103,6 +103,10 @@
         height: auto;
     }
 
+    &.active {
+        z-index: 1;
+    }
+
     &.appear-from-left {
         animation-name: appear-from-left;
         animation-duration: 700ms;

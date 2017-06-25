@@ -47,8 +47,9 @@
         $thisCarousel.children('.carousel-item').css('padding-bottom', '0'
 
         // hide all carousel items except the first one
-        );$carouselItems.addClass('fade-out');
-        $carouselItems[0].classList.remove('fade-out'
+        );$carouselItems.addClass('fade-out active');
+        $carouselItems[0].classList.remove('fade-out');
+        $carouselItems[0].classList.add('active'
 
         // create the dots
         );$('.dots').html(function () {
