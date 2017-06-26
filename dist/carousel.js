@@ -40,6 +40,7 @@
         var waitTime = 5000;
         var activeIndex = 0;
         var nextIndex = 1;
+        var isAutoSlideOn = true;
 
         // remove stacked styles
         $thisCarousel.removeClass('stacked');
@@ -87,7 +88,9 @@
 
             activeIndex = nextIndex;
 
-            restartAutoSlide();
+            if (isAutoSlideOn === true) {
+                restartAutoSlide();
+            }
         }
 
         $thisCarousel.find('.left-btn').click(function (e) {
@@ -117,16 +120,19 @@
 
             activeIndex = +nextIndex;
 
-            restartAutoSlide();
+            if (isAutoSlideOn === true) {
+                restartAutoSlide();
+            }
         }
 
         $thisCarousel.find('.dots').click(function (e) {
             if (e.target.classList.contains('dot')) {
                 onDotClick(e.target);
             }
-        });
+        }
 
-        var autoSlider = setInterval(function () {
+        // isAutoSlideOn functionality
+        );var autoSlider = setInterval(function () {
             return slideCarousel(null, 'right');
         }, waitTime);
         function restartAutoSlide() {
@@ -140,10 +146,12 @@
         this.waitTime = function (time) {
             waitTime = +time;
             restartAutoSlide();
+            isAutoSlideOn = true;
         };
 
         this.stopAutoSlide = function () {
             clearTimeout(autoSlider);
+            isAutoSlideOn = false;
         };
 
         this.stackSlides = stackSlides;

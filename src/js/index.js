@@ -49,6 +49,7 @@
         let waitTime = 5000
         let activeIndex = 0
         let nextIndex = 1
+        let isAutoSlideOn = true
 
         // remove stacked styles
         $thisCarousel.removeClass('stacked')
@@ -97,7 +98,9 @@
 
             activeIndex = nextIndex
 
-            restartAutoSlide()
+            if(isAutoSlideOn === true) {
+                restartAutoSlide()
+            }
         }
 
         $thisCarousel.find('.left-btn').click(e => slideCarousel(e, 'left'))
@@ -123,7 +126,9 @@
 
             activeIndex = +nextIndex
 
-            restartAutoSlide()
+            if(isAutoSlideOn === true) {
+                restartAutoSlide()
+            }
         }
 
         $thisCarousel.find('.dots').click(e => {
@@ -132,6 +137,7 @@
             }
         })
 
+        // isAutoSlideOn functionality
         let autoSlider = setInterval(() => slideCarousel(null, 'right'), waitTime)
         function restartAutoSlide() {
             if(autoSlider) clearTimeout(autoSlider)
@@ -142,10 +148,12 @@
         this.waitTime = function(time) {
             waitTime = +time
             restartAutoSlide()
+            isAutoSlideOn = true
         }
 
         this.stopAutoSlide = function() {
             clearTimeout(autoSlider)
+            isAutoSlideOn = false
         }
 
         this.stackSlides = stackSlides
