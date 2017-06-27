@@ -156,6 +156,10 @@
 
         this.stackSlides = stackSlides;
         this.initCarousel = initCarousel;
+
+        $('.dots, #left-btn, #right-btn').click(function (e) {
+            $(e.currentTarget).closest('.carousel')[0].stopAutoSlide();
+        });
     }
 
     if ($('.carousel').length) {
