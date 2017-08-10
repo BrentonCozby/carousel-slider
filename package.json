@@ -11,7 +11,10 @@
     "autoprefixer": "postcss src/css/**/*.css --use autoprefixer -r",
     "cleancss": "cleancss -o dist/carousel.min.css src/css/**/*.css",
     "build-css-min": "npm run sass && npm run autoprefixer && npm run cleancss",
-    "babel": "babel src/js --out-file dist/carousel.js"
+    "babel": "babel src/js --out-file dist/carousel.js",
+    "babel:watch": "babel src/js --watch --out-file dist/carousel.js",
+    "uglify:js": "uglifyjs dist/carousel.js -o dist/carousel.js --compress --mangle",
+    "prod": "npm run babel && npm run uglify:js && npm run build-css-min"
   },
   "devDependencies": {
     "autoprefixer": "^7.1.2",
