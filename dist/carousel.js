@@ -68,7 +68,7 @@
 
             // hide current carousel-item
             );var opposite = direction === 'left' ? 'right' : 'left';
-            $carouselItems[activeIndex].classList.remove('appear-from-left', 'appear-from-right', 'fade-in');
+            $carouselItems[activeIndex].classList.remove('appear-from-left', 'appear-from-right', 'fade-in', 'active');
             $carouselItems[activeIndex].classList.add('hide-to-' + opposite
 
             // calculate the index of the next carousel-item to show
@@ -80,7 +80,7 @@
 
             // show next carousel-item
             $carouselItems[nextIndex].classList.remove('hide-to-left', 'hide-to-right', 'fade-out');
-            $carouselItems[nextIndex].classList.add('appear-from-' + direction
+            $carouselItems[nextIndex].classList.add('appear-from-' + direction, 'active'
 
             // update dots' UI
             );$dots.removeClass('active');
@@ -107,12 +107,12 @@
             if (+nextIndex === +activeIndex) return;
 
             // fade out active carousel-item
-            $carouselItems[activeIndex].classList.remove('appear-from-left', 'appear-from-right', 'fade-in');
+            $carouselItems[activeIndex].classList.remove('appear-from-left', 'appear-from-right', 'fade-in', 'active');
             $carouselItems[activeIndex].classList.add('fade-out'
 
             // fade in next carousel-item
             );$carouselItems[nextIndex].classList.remove('hide-to-left', 'hide-to-right', 'fade-out');
-            $carouselItems[nextIndex].classList.add('fade-in'
+            $carouselItems[nextIndex].classList.add('fade-in', 'active'
 
             // update dots' UI
             );$dots.removeClass('active');
