@@ -9,8 +9,12 @@
 ### Install options
 - ```npm install --save carousel-slider```
 - CDN: place the ```link``` tag in the Head and the ```script``` tag at the bottom of the body:
-  * ```html <link rel="stylesheet" href="https://cdn.rawgit.com/BrentonCozby/carousel-slider/4052c74e/dist/carousel.min.css">```
-  * ```html <script src="https://cdn.rawgit.com/BrentonCozby/carousel-slider/4052c74e/dist/carousel.js"></script>```
+  * ```html
+   <link rel="stylesheet" href="https://cdn.rawgit.com/BrentonCozby/carousel-slider/4052c74e/dist/carousel.min.css">
+   ```
+  * ```html
+  <script src="https://cdn.rawgit.com/BrentonCozby/carousel-slider/4052c74e/dist/carousel.js"></script>
+  ```
 
 ### Requirements
 - jQuery
