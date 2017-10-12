@@ -6,7 +6,7 @@
 
         // set padding-bottom for each carousel-item that has a
         // background-image
-        if($thisCarousel.children('.carousel-item').children().length > 0) {
+        if ($thisCarousel.children('.carousel-item').children().length > 0) {
             const slideHeight = $($thisCarousel).css('padding-bottom')
             const slideWidth = $($thisCarousel).css('width')
 
@@ -17,7 +17,7 @@
             paddingBottom = paddingBottom * 100 + '%' || '0'
 
             $thisCarousel.children('.carousel-item').each((index, item) => {
-                if($(item).css('background-image') !== 'none') {
+                if ($(item).css('background-image') !== 'none') {
                     $(item).css('padding-bottom', paddingBottom)
                 }
             })
@@ -40,7 +40,7 @@
     }
 
     function initCarousel(index, carousel) {
-        if(this.stacked === false) return false
+        if (this.stacked === false) return false
 
         this.stacked = false
         const $thisCarousel = $(this)
@@ -63,7 +63,7 @@
         $carouselItems[0].classList.add('active')
 
         // create the dots
-        $('.dots').html(function() {
+        $('.carousel .dots').html(function() {
             let dotElements = ``
             $carouselItems.each((index) => {
                 const active = (index === 0) ? 'active' : ''
@@ -81,7 +81,7 @@
             $carouselItems[activeIndex].classList.add(`hide-to-${opposite}`)
 
             // calculate the index of the next carousel-item to show
-            if(direction === 'left') {
+            if (direction === 'left') {
                 nextIndex = (activeIndex - 1 + quant) % quant
             }
             else {
@@ -98,7 +98,7 @@
 
             activeIndex = nextIndex
 
-            if(isAutoSlideOn === true) {
+            if (isAutoSlideOn === true) {
                 restartAutoSlide()
             }
         }
@@ -110,7 +110,7 @@
             const nextIndex = thisDot.dataset.index
             const $dots = $thisCarousel.find('.dot')
 
-            if(+nextIndex === +activeIndex) return;
+            if (+nextIndex === +activeIndex) return;
 
             // fade out active carousel-item
             $carouselItems[activeIndex].classList.remove('appear-from-left', 'appear-from-right', 'fade-in', 'active')
@@ -126,13 +126,13 @@
 
             activeIndex = +nextIndex
 
-            if(isAutoSlideOn === true) {
+            if (isAutoSlideOn === true) {
                 restartAutoSlide()
             }
         }
 
         $thisCarousel.find('.dots').click(e => {
-            if(e.target.classList.contains('dot')) {
+            if (e.target.classList.contains('dot')) {
                 onDotClick(e.target)
             }
         })
@@ -140,7 +140,7 @@
         // isAutoSlideOn functionality
         let autoSlider = setInterval(() => slideCarousel(null, 'right'), waitTime)
         function restartAutoSlide() {
-            if(autoSlider) clearTimeout(autoSlider)
+            if (autoSlider) clearTimeout(autoSlider)
             autoSlider = setInterval(() => slideCarousel(null, 'right'), waitTime)
         }
 
@@ -159,12 +159,18 @@
         this.stackSlides = stackSlides
         this.initCarousel = initCarousel
 
-        $('.dots, #left-btn, #right-btn').click(e => {
+        $('.carousel .dots, #left-btn, #right-btn').click(e => {
             $(e.currentTarget).closest('.carousel')[0].stopAutoSlide()
         })
+
+        if (quant <= 1) {
+            this.stopAutoSlide()
+
+            $('.carousel .dots, #left-btn, #right-btn').hide()
+        }
     }
 
-    if($('.carousel').length) {
+    if ($('.carousel').length) {
         $('.carousel').each(initCarousel)
     }
 
