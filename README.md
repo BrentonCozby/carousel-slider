@@ -1,4 +1,5 @@
 # carousel-slider
+[![Known Vulnerabilities](https://snyk.io/test/github/brentoncozby/carousel-slider/badge.svg?targetFile=package.json)](https://snyk.io/test/github/brentoncozby/carousel-slider?targetFile=package.json)
 
 ### Supported Features
 - Multiple carousels on the same page
