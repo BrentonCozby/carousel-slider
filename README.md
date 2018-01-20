@@ -6,11 +6,17 @@
 - Looks good on all screen sizes
   * Option to break slides out of carousel-slider and stack them on top of each other (useful for small screens)
 
-### Install options
-- ```npm install --save carousel-slider```
-- CDN: place the ```link``` tag in the Head and the ```script``` tag at the bottom of the body:
-  * `<link rel="stylesheet" href="https://cdn.rawgit.com/BrentonCozby/carousel-slider/4052c74e/dist/carousel.min.css">`
-  * `<script src="https://cdn.rawgit.com/BrentonCozby/carousel-slider/4052c74e/dist/carousel.js"></script>`
+### Get Started
+```
+npm install --save carousel-slider
+```
+```html
+<!-- CDN. The CSS and JS files are both required. -->
+
+<link rel="stylesheet" href="https://cdn.rawgit.com/BrentonCozby/carousel-slider/4052c74e/dist/carousel.min.css">
+
+<script src="https://cdn.rawgit.com/BrentonCozby/carousel-slider/4052c74e/dist/carousel.js"></script>
+```
 
 ### Requirements
 - jQuery
